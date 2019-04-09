@@ -1,5 +1,6 @@
-export const join = (req, res) => res.render('join');
-export const login = (req, res) => res.send('login');
+export const join = (req, res) => res.render('join', { pageTitle: 'Join' });
+export const login = (req, res) => res.render('login', { pageTitle: 'Login' });
+
 export const logout = (req, res) => res.send('logout');
 export const users = (req, res) => res.send('users');
 export const uerDetail = (req, res) => res.send('uerDetail');
