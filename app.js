@@ -3,10 +3,12 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+
 import globalRouter from './routers/globalRouter';
 import userRouter from './routers/userRouter';
 import videoRouter from './routers/videoRouter';
 import routes from './routes';
+
 import { localsMiddleware } from './localsMiddleware';
 
 // var express = require('express');
