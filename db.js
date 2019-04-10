@@ -1,50 +1,15 @@
-export const videoList = [
-  {
-    id: 322493,
-    title: 'video awsome',
-    description: 'This is something I love',
-    views: 24,
-    videoFile: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
-    creator: {
-      id: 121212,
-      name: 'hanb',
-      email: 'hanb@eamil.han'
-    }
-  },
-  {
-    id: 2222222,
-    title: 'video super',
-    description: 'This is something I love',
-    views: 24,
-    videoFile: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
-    creator: {
-      id: 121212,
-      name: 'hanb',
-      email: 'hanb@eamil.han'
-    }
-  },
-  {
-    id: 333333,
-    title: 'video nice',
-    description: 'This is something I love',
-    views: 24,
-    videoFile: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
-    creator: {
-      id: 121212,
-      name: 'hanb',
-      email: 'hanb@eamil.han'
-    }
-  },
-  {
-    id: 444444,
-    title: 'video hohoho',
-    description: 'This is something I love',
-    views: 24,
-    videoFile: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
-    creator: {
-      id: 121212,
-      name: 'hanb',
-      email: 'hanb@eamil.han'
-    }
-  }
-];
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
+
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useFindAndModify: false
+});
+
+const db = mongoose.connection;
+const handleOpen = () => console.log('connect to db');
+const handleError = error => console.log('Error on DB Connection: ' + error);
+
+db.once('open', handleOpen);
+db.on('error', handleError);
