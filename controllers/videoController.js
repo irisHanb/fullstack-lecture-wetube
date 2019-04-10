@@ -1,4 +1,5 @@
-import { videoList } from '../db.js';
+import { videoList } from '../db';
+import routes from '../routes';
 
 export const home = (req, res) => {
   // console.log(videos);
@@ -15,11 +16,20 @@ export const search = (req, res) => {
 
 export const videos = (req, res) => res.send('videos');
 
-export const upload = (req, res) => {
+export const getUpload = (req, res) => {
   res.render('upload', { pageTitle: 'video upload' });
 };
+export const postUpload = (req, res) => {
+  const {
+    body: { file, title, description }
+  } = req;
+  // To Do: upload and save video
+  res.redirect(routes.videoDetail(333333));
+};
 
-export const videoDetail = (req, res) => res.send('videoDetail');
+export const videoDetail = (req, res) => {
+  res.render('videoDetail', { pageTitle: 'Video Detail' });
+};
 
 export const editVideo = (req, res) => {
   res.render('editVideo', { pageTitle: 'edit video' });
