@@ -9,12 +9,13 @@ import userRouter from './routers/userRouter';
 import videoRouter from './routers/videoRouter';
 import routes from './routes';
 
-import { localsMiddleware } from './localsMiddleware';
+import { localsMiddleware } from './middlewares';
 
 // var express = require('express');
 var app = express();
 
 app.set('view engine', 'pug');
+app.use('/uploads', express.static('uploads'));
 
 app.use(helmet());
 app.use(cookieParser());

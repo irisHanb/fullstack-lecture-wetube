@@ -6,7 +6,6 @@ export const home = async (req, res) => {
   try {
     const videoList = await Video.find({});
     res.render('home', { pageTitle: 'Home', videoList });
-    console.log(videoList);
   } catch (err) {
     console.log(err);
     res.render('home', { pageTitle: 'Home', videoList: [] });
@@ -26,16 +25,33 @@ export const videos = (req, res) => res.send('videos');
 export const getUpload = (req, res) => {
   res.render('upload', { pageTitle: 'video upload' });
 };
-export const postUpload = (req, res) => {
+export const postUpload = async (req, res) => {
   const {
-    body: { file, title, description }
+    body: { title, description },
+    file: { path }
   } = req;
-  // To Do: upload and save video
-  res.redirect(routes.videoDetail(333333));
+
+  const newVideo = await Video.create({
+    fileUrl: path,
+    title,
+    description
+  });
+  console.log(path);
+  res.redirect(routes.videoDetail(newVideo.id));
 };
 
-export const videoDetail = (req, res) => {
-  res.render('videoDetail', { pageTitle: 'Video Detail' });
+export const videoDetail = async (req, res) => {
+  console.log(req.params);
+  const {
+    params: { id }
+  } = req;
+  try {
+    const video = await Video.findById(id);
+    res.render('videoDetail', { pageTitle: 'Video Detail', video });
+  } catch (err) {
+    console.log(err);
+    res.redirect(routes.home);
+  }
 };
 
 export const editVideo = (req, res) => {
