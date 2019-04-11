@@ -2,9 +2,9 @@ extends layouts/main
 
 block content
   .form-container
-    form(action="", method="")
-      input(type="text", placeholder="Title", name="videoTitle")
-      input(type="textarea", placeholder="Description", name="videoDesc")
+    form(action=routes.editVideo(video.id) method="post")
+      input(type="text", placeholder="Title", name="title" value=video.title)
+      textarea(placeholder="Description", name="description")= video.description
       input(type="submit", value="Update Video")
     a(href=routes.editVideo) Delete Video
   
