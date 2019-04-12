@@ -12,11 +12,22 @@ export const home = async (req, res) => {
   }
 };
 
-export const search = (req, res) => {
+export const search = async (req, res) => {
   // console.log(req.query.term);
   const {
     query: { term: searchingBy }
   } = req;
+  // console.log(searchingBy);
+  let videoList = [];
+  try {
+    videoList = await Video.find({
+      title: { $regex: searchingBy, $options: 'i' }
+    });
+    console.log(searchBy, videoList.length);
+    // res.render('search', { pageTitle: 'Search', searchingBy, videoList });
+  } catch (err) {
+    // res.render('search', { pageTitle: 'Search', searchingBy, videoList });
+  }
   res.render('search', { pageTitle: 'Search', searchingBy, videoList });
 };
 
