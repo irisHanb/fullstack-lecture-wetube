@@ -1,6 +1,12 @@
-@import './config/_vars';
+@import 'config/reset';
+@import 'config/_vars';
+@import 'main';
 
-body {
-  background-color: $bgColor;
-  color: $colorFont;
-}
+@import 'partials/header';
+@import 'partials/footer';
+@import 'partials/form';
+@import 'partials/socialLogin';
+@import 'partials/videoBlock';
+
+@import 'pages/home';
+@import 'pages/videoDetail';

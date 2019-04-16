@@ -4,9 +4,9 @@
   "description": "nomad coders fullstack lecture exercise project",
   "main": "index.js",
   "scripts": {
-    "dev:sever": "nodemon --exec babel-node init.js --delay 2",
-    "dev:assets": "WEBPACK_ENV=development webpack -w",
-    "build:assets": "WEBPACK_ENV=production webpack"
+    "dev:sever": "nodemon --exec babel-node init.js --delay 2 --ignore 'scss'",
+    "dev:assets": "webpack -w",
+    "build:assets": "webpack"
   },
   "repository": {
     "type": "git",
